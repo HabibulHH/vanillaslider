@@ -115,6 +115,10 @@ let ImageArray = [
   "https://source.unsplash.com/user/erondu/daily",
   "https://source.unsplash.com/weekly?water",
   "https://source.unsplash.com/1600x900/?nature,water",
+  "https://source.unsplash.com/1600x900/?car,bike",
+  "https://source.unsplash.com/1600x900/?plane,home",
+
+  "https://source.unsplash.com/random",
 ];
 
 let imageDomList = [];
@@ -133,7 +137,7 @@ for (let index = 0; index < imageDomList.length; index++) {
     height: "auto",
     display: "inline-block",
     marginLeft: "5px",
-    backgroundColor: "blue",
+    backgroundColor: "gray",
   };
   Object.assign(li.style, { ...product_list__item });
 
@@ -148,7 +152,7 @@ for (let index = 0; index < imageDomList.length; index++) {
   div.appendChild(imageDomList[index]);
 
   let span = document.createElement("span");
-  span.appendChild(document.createTextNode("number"));
+  span.appendChild(document.createTextNode("waiting"));
   let productSpanStyle = {
     display: "table-cell",
     verticalAlign: "middle",
@@ -241,7 +245,7 @@ function CreateButton(icon) {
   button.style.backgroundColor = "#f1f1f1";
   button.style.color = "black";
   button.style.borderRadius = "50%";
-  button.style.width = "31px";
+  button.style.width = "23px";
   return button;
 }
 
