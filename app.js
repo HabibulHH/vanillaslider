@@ -35,53 +35,53 @@ carousel.className = "js-product-carousel";
 carousel.style.margin = "20px";
 let carousel__view = document.createElement("div");
 
-// let carousel__control = {
-//   position: "absolute",
-//   zIndex: "1",
-//   height: "300px",
-//   width: "70px",
-//   backgroundColor: "rgba(221, 221, 221, 0.5)",
-//   transition: "background-color 0.3s",
-//   display: "table",
-// };
-// let carousel__control_next = {
-//   position: "absolute",
-//   zIndex: "1",
-//   height: "300px",
-//   width: "70px",
-//   backgroundColor: "rgba(221, 221, 221, 0.5)",
-//   transition: "background-color 0.3s",
-//   display: "table",
-//   right: "0",
-// };
-// let prevSpan = document.createElement("span");
-// prevSpan.className = "js-carousel-prev";
-// prevSpan.style.left = "0,";
+let carousel__control = {
+  position: "absolute",
+  zIndex: "1",
+  height: "300px",
+  width: "70px",
+  backgroundColor: "rgba(221, 221, 221, 0.5)",
+  transition: "background-color 0.3s",
+  display: "table",
+};
+let carousel__control_next = {
+  position: "absolute",
+  zIndex: "1",
+  height: "300px",
+  width: "70px",
+  backgroundColor: "rgba(221, 221, 221, 0.5)",
+  transition: "background-color 0.3s",
+  display: "table",
+  right: "0",
+};
+let prevSpan = document.createElement("span");
+prevSpan.className = "js-carousel-prev";
+prevSpan.style.left = "0,";
 
-// Object.assign(prevSpan.style, { ...carousel__control });
+Object.assign(prevSpan.style, { ...carousel__control });
 
-// let icon = document.createElement("i");
-// //icon.appendChild(document.createTextNode("previous"));
-// icon.style.display = "table-cell";
-// icon.style.verticalAlign = "middle";
-// icon.style.textAlign = "center";
-// prevSpan.appendChild(icon);
+let icon = document.createElement("i");
+//icon.appendChild(document.createTextNode("previous"));
+icon.style.display = "table-cell";
+icon.style.verticalAlign = "middle";
+icon.style.textAlign = "center";
+prevSpan.appendChild(icon);
 
-// let nextSpan = document.createElement("span");
-// nextSpan.className = "js-carousel-next";
-// Object.assign(nextSpan.style, { ...carousel__control_next });
-// nextSpan.style.right = "0,";
-// let NextIcon = document.createElement("i");
-// //NextIcon.appendChild(document.createTextNode("next"));
-// NextIcon.style.display = "table-cell";
-// NextIcon.style.verticalAlign = "middle";
-// NextIcon.style.textAlign = "center";
-// prevSpan.appendChild(icon);
+let nextSpan = document.createElement("span");
+nextSpan.className = "js-carousel-next";
+Object.assign(nextSpan.style, { ...carousel__control_next });
+nextSpan.style.right = "0,";
+let NextIcon = document.createElement("i");
+//NextIcon.appendChild(document.createTextNode("next"));
+NextIcon.style.display = "table-cell";
+NextIcon.style.verticalAlign = "middle";
+NextIcon.style.textAlign = "center";
+prevSpan.appendChild(icon);
 
-// nextSpan.appendChild(NextIcon);
+nextSpan.appendChild(NextIcon);
 
-// carousel__view.appendChild(prevSpan);
-// carousel__view.appendChild(nextSpan);
+carousel__view.appendChild(prevSpan);
+carousel__view.appendChild(nextSpan);
 carousel__view.className = "carousel__view";
 let viewStyle = {
   width: `calc((200px * 4) + 22px)`,
@@ -110,15 +110,13 @@ let product_list = {
 };
 Object.assign(list.style, { ...product_list });
 
-let ImageArray = [];
+let ImageArray = [
+  "https://source.unsplash.com/daily",
+  "https://source.unsplash.com/user/erondu/daily",
+  "https://source.unsplash.com/weekly?water",
+  "https://source.unsplash.com/1600x900/?nature,water",
+];
 
-let ImageUrls = window.theme.recentlyViewed.recent;
-if (ImageUrls) {
-  let keys = Object.keys(window.theme.recentlyViewed.recent);
-  keys.forEach((key) => {
-    ImageArray.push(ImageUrls[key].featuredImage.replace("{width}", "600"));
-  });
-}
 let imageDomList = [];
 
 for (let index = 0; index < ImageArray.length; index++) {
@@ -192,12 +190,12 @@ function carouselize(carousel) {
     productList.style.width = productListWidth + "px";
   });
 
-  // carouselNext.onclick = function () {
-  //   if (productListSteps < productAmount - productAmountVisible) {
-  //     productListSteps++;
-  //     moveProductList();
-  //   }
-  // };
+  carouselNext.onclick = function () {
+    if (productListSteps < productAmount - productAmountVisible) {
+      productListSteps++;
+      moveProductList();
+    }
+  };
   leftNode.addEventListener("click", function (e) {
     if (productListSteps > 0) {
       productListSteps--;
@@ -210,12 +208,12 @@ function carouselize(carousel) {
       moveProductList();
     }
   });
-  // carouselPrev.onclick = function () {
-  //   if (productListSteps > 0) {
-  //     productListSteps--;
-  //     moveProductList();
-  //   }
-  // };
+  carouselPrev.onclick = function () {
+    if (productListSteps > 0) {
+      productListSteps--;
+      moveProductList();
+    }
+  };
 
   // This is a bit hacky, let me know if you find a better way to do this!
   // Move the carousels product-list
@@ -265,5 +263,3 @@ function createImage(url) {
 
   return div;
 }
-
-leftNode.addEventListener("click", function (e) {});
